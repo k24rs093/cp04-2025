@@ -38,6 +38,19 @@
         $('#btnC').click(function(e) {
             btnCClick(e);
         });
+
+        $('#preset3').click(function(e) {
+            setPresetTime(3, 0);
+        });
+
+        $('#preset5').click(function(e) {
+            setPresetTime(5, 0);
+        });
+
+        $('#preset10').click(function(e) {
+            setPresetTime(10, 0);
+        });
+            
         init();
     });
     
@@ -156,7 +169,16 @@
     var rest = 0;
     var etime = 0;
 
-
+    function setPresetTime(minutes, seconds){
+        $('#minute').val(minutes);
+        $('#second').val(seconds);
+        active = false;
+        period = 60 * minutes + seconds;
+        rest = period;
+        $("#time").html("経過時間： 0");
+        $("#remain").html("残り時間： " + period);
+        analog(rest);
+}
 
     
     // ボタンの初期設定
@@ -239,16 +261,17 @@
     <div id="remain">Remaining time</div>
     <div id="time">Time</div>
 
-    <div>
-        <button id="preset3">3分</button>
-        <button id="preset5">5分</button>
-        <button id="preset10">10分</button>
-    </div>
-    
     <button id="btnA">Start</button>  
     <button id="btnB">Stop</button>  
     <button id="btnC">Set</button>  
     <input type="number" id="minute" value=0 >
     <input type="number" id="second" value=15 >
+
+    <div>
+        <button id="preset3">3分</button>
+        <button id="preset5">5分</button>
+        <button id="preset10">10分</button>
+    </div>
+
 </body>
 </html>
